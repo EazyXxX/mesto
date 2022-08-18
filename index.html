@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+
+<body>
+  <div class="page">
+    <form class="popup" id="form">
+      <img class="popup__cross-button" src="./images/Cross.svg" alt="Закрыть">
+      <div class="popup__window">
+        <h2 class="popup__header">Редактировать профиль</h2>
+        <label><input class="popup__name" type="text" name="user-name" placeholder="Жак-Ив Кусто"></label>
+        <div class="popup__line"></div>
+        <label><input class="popup__subname" type="text" name="user-subname" placeholder="Исследователь океана"></label>
+        <div class="popup__line"></div>
+        <button type="submit" class="popup__save-button"><p class="popup__button-text">Сохранить</p></button>
+      </div>
+    </form>
+    <header class="header">
+      <img class="header__logo" src="./images/Vector.svg" alt="Место">
+    </header>
+    <div class="header__line"></div>
+    <section class="profile">
+      <img class="profile__avatar" src="./images/Kusto.png" alt="Фото профиля">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <img class="profile__edit-button" src="./images/Edit.svg" alt="Редактировать">
+        <h2 class="profile__description">Исследователь океана</h2>
+      </div>
+      <img class="profile__plus" src="./images/Plus.svg" alt="Добавить">
+    </section>
+    <section>
+      <ul class="elements">
+        <li class="elements__card">
+          <img class="elements__image" src="./images/Gleb.png" alt="Глеб">
+          <div class="elements__card-footer">
+            <p class="elements__name">Глебос</p>
+            <img class="elements__like" src="./images/Heart.svg" alt="Лайк">
+          </div>
+        </li>
+        <li class="elements__card">
+          <img class="elements__image" src="./images/Iliya.png" alt="Илья">
+          <div class="elements__card-footer">
+            <p class="elements__name">_____Илья__________f</p>
+            <img class="elements__like" src="./images/Heart.svg" alt="Лайк">
+          </div>
+        </li>
+        <li class="elements__card">
+          <img class="elements__image" src="./images/German.png" alt="Герман">
+          <div class="elements__card-footer">
+            <p class="elements__name">Герман</p>
+            <img class="elements__like" src="./images/Heart.svg" alt="Лайк">
+          </div>
+        </li>
+        <li class="elements__card">
+          <img class="elements__image" src="./images/Jurez.png" alt="Юрец">
+          <div class="elements__card-footer">
+            <p class="elements__name">Юрец</p>
+            <img class="elements__like" src="./images/Heart.svg" alt="Лайк">
+          </div>
+        </li>
+        <li class="elements__card">
+          <img class="elements__image" src="./images/Pasha.png" alt="Паша">
+          <div class="elements__card-footer">
+            <p class="elements__name">Пашич</p>
+            <img class="elements__like" src="./images/Heart.svg" alt="Лайк">
+          </div>
+        </li>
+        <li class="elements__card">
+          <img class="elements__image" src="./images/Misha.png" alt="Мишган">
+          <div class="elements__card-footer">
+            <p class="elements__name">Мишган</p>
+            <img class="elements__like" src="./images/Heart.svg" alt="Лайк">
+          </div>
+        </li>
+      </ul>
+    </section>
+    <footer class="footer">
+      <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>

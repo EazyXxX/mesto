@@ -1,0 +1,23 @@
+.profile__info {
+  display: flex;
+  flex-direction: row;
+  max-width: 350px;
+  max-height: 73px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 770px) {
+  .profile__info {
+    display: grid;
+    grid-template-areas:
+      "name edit-button"
+      "description ...";
+    margin-top: 0;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 10px;
+    margin-left: 20px;
+  }
+}
+
