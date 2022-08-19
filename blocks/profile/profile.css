@@ -1,9 +1,10 @@
 .profile {
-  padding-bottom: 35px;
+  padding-bottom: 52px;
   max-width: 882px;
   margin-right: auto;
   margin-left: auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 156px auto 150px;
 }
 
 @media screen and (max-width: 900px) {
@@ -14,11 +15,11 @@
 
 @media screen and (max-width: 770px) {
   .profile {
-    display: grid;
-    grid-template-columns: 1;
-    grid-template-rows: 3;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
     justify-items: center;
     row-gap: 22px;
     padding-bottom: 34px;
+
   }
 }

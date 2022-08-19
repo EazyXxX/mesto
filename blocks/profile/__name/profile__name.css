@@ -5,10 +5,8 @@
   font-size: 42px;
   line-height: 48px;
   color: #FFFFFF;
-  margin-top: 0;
-  margin-bottom: 8px;
-  margin-left: 0;
-  margin-right: 15px;
+  margin: 0;
+  grid-area: name;
 }
 
 @media screen and (max-width: 770px) {
@@ -17,7 +15,6 @@
     line-height: 33px;
     margin-right: 0;
     margin-bottom: 0;
-    grid-area: name;
     margin-top: 4px;
   }
 }

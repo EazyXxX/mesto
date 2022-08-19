@@ -9,7 +9,7 @@
   max-height: 22px;
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 240px;
+  float: left;
 }
 
 .profile__plus:hover {
