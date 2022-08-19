@@ -1,4 +1,4 @@
-.header__line {
+.line {
 margin-bottom: 36px;
 max-width: 894px;
 opacity: 0.14;
@@ -11,7 +11,7 @@ position: relative;
 }
 
 @media screen and (max-width: 920px) {
-  .header__line {
+  .line {
     max-width: 320px;
     margin-bottom: 40px;
   }
