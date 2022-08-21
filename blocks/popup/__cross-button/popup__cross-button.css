@@ -2,8 +2,8 @@
   max-width: 32px;
   max-height: 32px;
   position: absolute;
-  top: 155px;
-  left: 1030px;
+  top: 175px;
+  left: 1015px;
 }
 
 .popup__cross-button:hover {
@@ -21,7 +21,7 @@
     max-width: 20px;
     max-height: 20px;
     left: 505px;
-    top: 83px;
+    top: 140px;
   }
 }
 
