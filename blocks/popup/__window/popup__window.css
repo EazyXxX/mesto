@@ -8,35 +8,9 @@
   margin: auto;
 }
 
-@media screen and (max-width: 1030px) {
-  .popup__window {
-    left: 29%;
-  }
-}
-
 @media screen and (max-width: 770px) {
   .popup__window {
     width: 282px;
     height: 322px;
-    top: 123px;
-    left: 31.6%;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .popup__window {
-    left: 17%;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .popup__window {
-    left: 12.5%;
-  }
-}
-
-@media screen and (max-width: 325px) {
-  .popup__window {
-    left: 6%;
   }
 }

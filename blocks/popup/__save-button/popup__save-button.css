@@ -4,6 +4,7 @@
   text-align: center;
   border-radius: 2px;
   box-sizing: border-box;
+  border: 0;
   margin-left: 36px;
   margin-right: auto;
   padding-top: 14px;
@@ -16,6 +17,7 @@
   font-size: 18px;
   line-height: 22px;
   color: white;
+  cursor: pointer;
 }
 
 .popup__save-button:hover {

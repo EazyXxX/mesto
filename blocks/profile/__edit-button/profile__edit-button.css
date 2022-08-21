@@ -10,6 +10,7 @@
   grid-area: edit-button;
   position: relative;
   right: 119px;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {

@@ -10,17 +10,19 @@
 
 <body>
   <div class="page">
-    <form class="popup" id="form">
-      <img class="popup__cross-button" src="./images/Cross.svg" alt="Закрыть">
+    <section class="popup">
+    <form class="popup__form" id="form">
       <div class="popup__window">
         <h2 class="popup__header">Редактировать профиль</h2>
-        <label><input class="popup__name" type="text" name="user-name" placeholder="Жак-Ив Кусто"></label>
+        <input class="popup__name" type="text" name="user-name" placeholder="Жак-Ив Кусто">
         <div class="popup__line"></div>
-        <label><input class="popup__subname" type="text" name="user-subname" placeholder="Исследователь океана"></label>
+        <input class="popup__subname" type="text" name="user-subname" placeholder="Исследователь океана">
         <div class="popup__line"></div>
         <button type="submit" class="popup__save-button">Сохранить</button>
       </div>
     </form>
+      <img class="popup__cross-button" src="./images/Cross.svg" alt="Закрыть">
+    </section>
     <header class="header">
       <img class="header__logo" src="./images/Vector.svg" alt="Место">
     </header>
