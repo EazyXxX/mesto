@@ -1,11 +1,14 @@
 .header {
-max-width: 880px;
-margin-right: auto;
-margin-left: auto;
+    max-width: 880px;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom-style: solid;
+    border-bottom-color: #545454;
+    border-bottom-width: 1px;
 }
 
 @media screen and (max-width: 770px) {
-  .header {
-    max-width: 282px;
-  }
+    .header {
+        max-width: 282px;
+    }
 }

@@ -1,0 +1,36 @@
+.popup__input_name {
+    max-width: 358px;
+    margin-left: 32px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    outline-color: blue;
+    border: 0;
+    border-bottom-style: solid;
+    border-bottom-color: #00000026;
+    border-bottom-width: 1px;
+    padding-bottom: 13px;
+}
+
+.popup__input_name::placeholder {
+    color: black;
+    opacity: 0.6;
+}
+
+.popup__input_name:-ms-input-placeholder {
+    color: black;
+}
+
+.popup__input_name::-ms-input-placeholder {
+    color: black;
+}
+
+@media screen and (max-width: 770px) {
+    .popup__input_name {
+        max-width: 238px;
+        margin-top: 71px;
+        margin-left: 20px;
+    }
+}

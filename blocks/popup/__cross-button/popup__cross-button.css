@@ -1,44 +1,26 @@
 .popup__cross-button {
-  max-width: 32px;
-  max-height: 32px;
-  position: absolute;
-  top: 175px;
-  left: 1015px;
+    max-width: 32px;
+    max-height: 32px;
+    position: absolute;
+    top: -42px;
+    left: 436px;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    border: none;
+    padding: 0;
+    background-color: transparent;
 }
 
 .popup__cross-button:hover {
-  opacity: 0.6;
-}
-
-@media screen and (max-width: 1030px) {
-  .popup__cross-button {
-    left: 730px;
-  }
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 770px) {
-  .popup__cross-button {
-    max-width: 20px;
-    max-height: 20px;
-    left: 505px;
-    top: 140px;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .popup__cross-button {
-    left: 333px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .popup__cross-button {
-    left: 308px;
-  }
-}
-
-@media screen and (max-width: 325px) {
-  .popup__cross-button {
-    left: 280px;
-  }
+    .popup__cross-button {
+        max-width: 20px;
+        max-height: 20px;
+        left: 263px;
+        top: -34px;
+    }
 }
