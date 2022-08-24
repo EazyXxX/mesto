@@ -1,4 +1,5 @@
-.elements__card_button {
+.profile__plus-button {
     background-color: transparent;
     border: 0;
+    outline: 0;
 }
