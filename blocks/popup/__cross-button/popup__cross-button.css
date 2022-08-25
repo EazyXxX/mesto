@@ -1,15 +1,19 @@
 .popup__cross-button {
-    max-width: 32px;
-    max-height: 32px;
+    width: 32px;
+    height: 32px;
     position: absolute;
     top: -42px;
-    left: 436px;
+    right: -40px;
     cursor: pointer;
     display: block;
     outline: none;
     border: none;
     padding: 0;
+    background-image: url(../../../images/Cross.svg);
     background-color: transparent;
+    background-size: 32px 32px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .popup__cross-button:hover {
@@ -20,7 +24,8 @@
     .popup__cross-button {
         max-width: 20px;
         max-height: 20px;
-        left: 263px;
+        right: 0;
         top: -34px;
+        background-size: 20px 20px;
     }
 }

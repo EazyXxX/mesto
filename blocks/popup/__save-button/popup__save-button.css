@@ -17,6 +17,8 @@
     line-height: 22px;
     color: white;
     cursor: pointer;
+    margin-top: 48px;
+    margin-bottom: 37px;
 }
 
 .popup__save-button:hover {
@@ -28,7 +30,8 @@
         max-width: 238px;
         font-size: 14px;
         line-height: 17px;
-        margin-top: 39px;
+        margin-top: 45px;
+        margin-bottom: 25px;
         margin-left: 22px;
         padding-top: 12px;
         padding-bottom: 15px;

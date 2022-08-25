@@ -9,109 +9,94 @@
 </head>
 
 <body class="body">
-<div class="page">
-    <div class="popup">
-        <form class="popup__form" id="form" name="popupForm">
-            <div class="popup__window">
-                <button class="popup__cross-button" type="button" aria-label="close"><img
-                        class="popup__cross-button-image"
-                        src="./images/Cross.svg" alt="Закрыть"></button>
-                <h2 class="popup__header">Редактировать профиль</h2>
-                <input class="popup__input popup__input-name" type="text" name="user-name" placeholder="Имя"
-                       value="Жак-Ив Кусто">
-                <input class="popup__input popup__input_subname" type="text" name="user-subname"
-                       value="Исследователь океана"
-                       placeholder="Предназначение">
-                <button type="submit" class="popup__save-button">Сохранить</button>
+    <div class="page">
+        <div class="popup">
+            <div class="popup__field">
+                <div class="popup__window">
+                    <button class="popup__cross-button" type="button" aria-label="close"></button>
+                    <h2 class="popup__header">Редактировать профиль</h2>
+                    <form class="popup__form" id="form" name="popupForm">
+                        <input class="popup__input popup__input_name" type="text" name="user-name" placeholder="Имя"
+                            value="Жак-Ив Кусто">
+                        <input class="popup__input popup__input_subname" type="text" name="user-subname"
+                            value="Исследователь океана" placeholder="Предназначение">
+                        <button type="submit" class="popup__save-button">Сохранить</button>
+                    </form>
+                </div>
             </div>
-        </form>
 
+        </div>
+        <header class="header">
+            <img class="header__logo" src="./images/Vector.svg" alt="Место">
+        </header>
+        <main>
+            <section class="profile">
+                <img class="profile__avatar" src="./images/Kusto.png" alt="Фото профиля">
+                <div class="profile__info">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button type="button" class="profile__edit-button" aria-label="open"></button>
+                    <p class="profile__description">Исследователь океана</p>
+                </div>
+                <button class="profile__plus-button" aria-label="add" type="button"></button>
+            </section>
+            <section class="elements">
+                <ul class="elements__list">
+                    <li class="elements__card">
+                        <img class="elements__image" src="./images/Gleb.png" alt="Глеб">
+                        <div class="elements__card-footer">
+                            <h2 class="elements__name">Глебос</h2>
+                            <button class="elements__like" type="button" aria-label="лайк">
+                            </button>
+                        </div>
+                    </li>
+                    <li class="elements__card">
+                        <img class="elements__image" src="./images/Iliya.png" alt="Илья">
+                        <div class="elements__card-footer">
+                            <h2 class="elements__name">_____Илья__________f</h2>
+                            <button class="elements__like" type="button" aria-label="лайк">
+                            </button>
+                        </div>
+                    </li>
+                    <li class="elements__card">
+                        <img class="elements__image" src="./images/German.png" alt="Герман">
+                        <div class="elements__card-footer">
+                            <h2 class="elements__name">Герман</h2>
+                            <button class="elements__like" type="button" aria-label="лайк">
+                            </button>
+                        </div>
+                    </li>
+                    <li class="elements__card">
+                        <img class="elements__image" src="./images/Jurez.png" alt="Юрец">
+                        <div class="elements__card-footer">
+                            <h2 class="elements__name">Юрец</h2>
+                            <button class="elements__like" type="button" aria-label="лайк">
+                            </button>
+                        </div>
+                    </li>
+                    <li class="elements__card">
+                        <img class="elements__image" src="./images/Pasha.png" alt="Паша">
+                        <div class="elements__card-footer">
+                            <h2 class="elements__name">Пашич</h2>
+                            <button class="elements__like" type="button" aria-label="лайк">
+                            </button>
+                        </div>
+                    </li>
+                    <li class="elements__card">
+                        <img class="elements__image" src="./images/Misha.png" alt="Мишган">
+                        <div class="elements__card-footer">
+                            <h2 class="elements__name">Мишган</h2>
+                            <button class="elements__like" type="button" aria-label="лайк">
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__text">© 2020 Mesto Russia</p>
+        </footer>
     </div>
-    <header class="header">
-        <img class="header__logo" src="./images/Vector.svg" alt="Место">
-    </header>
-    <main>
-        <section class="profile">
-            <img class="profile__avatar" src="./images/Kusto.png" alt="Фото профиля">
-            <div class="profile__info">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button type="button" class="profile__edit-button" aria-label="open"></button>
-                <p class="profile__description">Исследователь океана</p>
-            </div>
-            <button class="profile__plus-button" aria-label="add"><img class="profile__plus" src="./images/Plus.svg"
-                                                                       alt="Добавить">
-            </button>
-        </section>
-        <section class="elements">
-            <ul class="elements__list">
-                <li class="elements__card">
-                    <img class="elements__image" src="./images/Gleb.png" alt="Глеб">
-                    <div class="elements__card-footer">
-                        <h3 class="elements__name">Глебос</h3>
-                        <button class="elements__card-button" type="button" aria-label="like"><img
-                                class="elements__like"
-                                src="./images/Heart.svg" alt="Лайк">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img class="elements__image" src="./images/Iliya.png" alt="Илья">
-                    <div class="elements__card-footer">
-                        <h3 class="elements__name">_____Илья__________f</h3>
-                        <button class="elements__card-button" type="button" aria-label="like"><img
-                                class="elements__like"
-                                src="./images/Heart.svg" alt="Лайк">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img class="elements__image" src="./images/German.png" alt="Герман">
-                    <div class="elements__card-footer">
-                        <h3 class="elements__name">Герман</h3>
-                        <button class="elements__card-button" type="button" aria-label="like"><img
-                                class="elements__like"
-                                src="./images/Heart.svg" alt="Лайк">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img class="elements__image" src="./images/Jurez.png" alt="Юрец">
-                    <div class="elements__card-footer">
-                        <h3 class="elements__name">Юрец</h3>
-                        <button class="elements__card-button" type="button" aria-label="like"><img
-                                class="elements__like"
-                                src="./images/Heart.svg" alt="Лайк">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img class="elements__image" src="./images/Pasha.png" alt="Паша">
-                    <div class="elements__card-footer">
-                        <h3 class="elements__name">Пашич</h3>
-                        <button class="elements__card-button" type="button" aria-label="like"><img
-                                class="elements__like"
-                                src="./images/Heart.svg" alt="Лайк">
-                        </button>
-                    </div>
-                </li>
-                <li class="elements__card">
-                    <img class="elements__image" src="./images/Misha.png" alt="Мишган">
-                    <div class="elements__card-footer">
-                        <h3 class="elements__name">Мишган</h3>
-                        <button class="elements__card-button" type="button" aria-label="like"><img
-                                class="elements__like"
-                                src="./images/Heart.svg" alt="Лайк">
-                        </button>
-                    </div>
-                </li>
-            </ul>
-        </section>
-    </main>
-    <footer class="footer">
-        <p class="footer__text">© 2020 Mesto Russia</p>
-    </footer>
-</div>
-<script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

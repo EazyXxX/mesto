@@ -1,36 +1,3 @@
 .popup__input_subname {
-    font-family: 'Inter', Arial, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    color: #000000;
-    max-width: 358px;
-    margin-left: 32px;
     outline-color: blue;
-    border: 0;
-    border-bottom-style: solid;
-    border-bottom-color: #00000026;
-    border-bottom-width: 1px;
-    padding-bottom: 13px;
-}
-
-.popup__input_subname::placeholder {
-    color: black;
-    opacity: 0.6;
-}
-
-.popup__input_subname:-ms-input-placeholder {
-    color: black;
-}
-
-.popup__input_subname::-ms-input-placeholder {
-    color: black;
-}
-
-@media screen and (max-width: 770px) {
-    .popup__input_subname {
-        max-width: 238px;
-        margin-left: 20px;
-    }
 }

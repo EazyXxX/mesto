@@ -11,7 +11,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    vertical-align: middle;
 }
 
 @media screen and (max-width: 770px) {

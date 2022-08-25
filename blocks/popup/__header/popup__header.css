@@ -10,6 +10,8 @@
     margin-right: 64px;
     max-width: 330px;
     margin-bottom: 0;
+    padding-top: 34px;
+    padding-bottom: 24px;
 }
 
 @media screen and (max-width: 770px) {
@@ -19,6 +21,7 @@
         max-width: 238px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 25px;
+        padding-top: 25px;
+        padding-bottom: 45px;
     }
 }
