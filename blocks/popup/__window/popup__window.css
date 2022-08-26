@@ -4,7 +4,6 @@
     width: 430px;
     border-radius: 10px;
     z-index: 3;
-    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
