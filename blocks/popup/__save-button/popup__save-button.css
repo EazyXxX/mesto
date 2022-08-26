@@ -27,13 +27,14 @@
 
 @media screen and (max-width: 770px) {
     .popup__save-button {
-        max-width: 238px;
+        width: 238px;
+        height: 46px;
         font-size: 14px;
         line-height: 17px;
         margin-top: 45px;
         margin-bottom: 25px;
         margin-left: 22px;
-        padding-top: 12px;
-        padding-bottom: 15px;
+        padding-top: 14px;
+        padding-bottom: 14px;
     }
 }
