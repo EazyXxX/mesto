@@ -19,10 +19,12 @@
     cursor: pointer;
     margin-top: 48px;
     margin-bottom: 37px;
+    transition: 0.2s;
 }
 
 .popup__save-button:hover {
     background: rgba(0, 0, 0, 0.8);
+    transition: 0.2s;
 }
 
 @media screen and (max-width: 770px) {

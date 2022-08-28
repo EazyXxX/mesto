@@ -10,11 +10,12 @@
 
 <body class="body">
     <div class="page">
-        <div class="popup">
+        <div class="popup popup_type_edit">
             <div class="popup__window">
-                <button class="popup__cross-button" type="button" aria-label="close"></button>
+                <button class="popup__cross-button popup__cross-button_type_edit" type="button"
+                    aria-label="close"></button>
                 <h2 class="popup__header">Редактировать профиль</h2>
-                <form class="popup__form" id="form" name="popupForm">
+                <form class="popup__form popup__form_type_edit" id="form" name="popupForm">
                     <input class="popup__input popup__input_type_name" type="text" name="user-name" placeholder="Имя"
                         value="Жак-Ив Кусто">
                     <input class="popup__input popup__input_type_subname" type="text" name="user-subname"
@@ -23,6 +24,20 @@
                 </form>
             </div>
 
+        </div>
+        <div class="popup popup_type_card">
+            <div class="popup__window">
+                <button class="popup__cross-button popup__cross-button_type_card" type="button"
+                    aria-label="close"></button>
+                <h2 class="popup__header">Новое место</h2>
+                <form class="popup__form popup__form_type_card" id="form" name="popupForm">
+                    <input class="popup__input popup__input_type_card-name" type="text" name="user-name"
+                        placeholder="Название" value="">
+                    <input class="popup__input popup__input_type_link" type="url" name="user-subname" value=""
+                        placeholder="Ссылка на картинку">
+                    <button type="submit" class="popup__save-button">Сохранить</button>
+                </form>
+            </div>
         </div>
         <header class="header">
             <img class="header__logo" src="./images/Vector.svg" alt="Место">
@@ -38,7 +53,17 @@
                 <button class="profile__plus-button" aria-label="add" type="button"></button>
             </section>
             <section class="elements">
-                <ul class="elements__list">
+                <ul class="elements__list" id="list">
+                    <template>
+                        <li class="elements__card">
+                            <img class="elements__image" src="" alt="">
+                            <div class="elements__card-footer">
+                                <h2 class="elements__name"></h2>
+                                <button class="elements__like" type="button" aria-label="лайк">
+                                </button>
+                            </div>
+                        </li>
+                    </template>
                     <li class="elements__card">
                         <img class="elements__image" src="./images/Gleb.png" alt="Глеб">
                         <div class="elements__card-footer">
@@ -50,7 +75,7 @@
                     <li class="elements__card">
                         <img class="elements__image" src="./images/Iliya.png" alt="Илья">
                         <div class="elements__card-footer">
-                            <h2 class="elements__name">_____Илья__________f</h2>
+                            <h2 class="elements__name">Илья</h2>
                             <button class="elements__like" type="button" aria-label="лайк">
                             </button>
                         </div>
