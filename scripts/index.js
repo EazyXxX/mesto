@@ -47,39 +47,91 @@ editPopupForm.addEventListener('submit', editFormSubmitHandler);
 
 
 const elementsList = document.querySelector('#list');
+const linkInput = document.querySelector('.popup__input_type_link').value;
+const cardInput = document.querySelector('.popup__input_type_card-name').value;
+const templateElement = document.querySelector('.template');
 
+function addCard(e) {
+    e.preventDefault();
+    const newCardElement = templateElement.content.cloneNode(true);
+    const linkInput = document.querySelector('.popup__input_type_link').value;
+    const cardInput = document.querySelector('.popup__input_type_card-name').value;
+    newCardElement.querySelector('.elements__name').textContent = cardInput;
+    newCardElement.querySelector('.elements__image').alt = cardInput;
+    newCardElement.querySelector('.elements__image').src = linkInput;
 
-function cardFormSubmitHandler(evt) {
-    evt.preventDefault();
-    let cardInput = document.querySelector('.popup__input_type_card-name').value;
-let linkInput = document.querySelector('.popup__input_type_link').value;
+    //deletion
+    newCardElement.querySelector('.elements__delete-button').addEventListener("click", (e) => {
+        const elementItem = e.target.closest('.elements__card');
+        elementItem.remove();
+    }
+    );
 
-const html = `
-<li class="elements__card">
-<img class="elements__image" src="${linkInput}" alt="${cardInput}">
-<div class="elements__card-footer">
-    <h2 class="elements__name">${cardInput}</h2>
-    <button class="elements__like" type="button" aria-label="лайк">
-    </button>
-</div>
-</li>
-`
-    elementsList.insertAdjacentHTML('afterbegin', html);
+    elementsList.prepend(newCardElement);
     closePopupCard();
+
+    //like
+    const newLike = document.querySelector('.elements__like');
+    const getNewLike = function (button) {
+        button.addEventListener("click", () => {
+            button.classList.toggle('elements__like_active');
+        })
+    };
+    getNewLike(newLike);
 }
 
-cardPopupForm.addEventListener('submit', cardFormSubmitHandler);
+cardPopupForm.addEventListener('submit', addCard);
 
 const like = document.querySelectorAll('.elements__like');
 
-console.log(like)
+const getLike = like.forEach((button) => {
+    button.addEventListener("click", () => {
+        button.classList.toggle('elements__like_active');
+    });
+});
 
-const getLike = function() {
-    like.forEach(like.classList.toggle("elements__like_active"));
-    like.addEventListener("click", getLike);
+const cards = document.querySelectorAll('.elements__card');
+
+const glebCard = document.querySelector('.elements__card_type_gleb');
+const ilyaCard = document.querySelector('.elements__card_type_ilya');
+const germanCard = document.querySelector('.elements__card_type_german');
+const jurezCard = document.querySelector('.elements__card_type_jurez');
+const pashaCard = document.querySelector('.elements__card_type_pasha');
+const mishaCard = document.querySelector('.elements__card_type_misha');
+
+glebCard.querySelector('.elements__delete-button').addEventListener("click", (e) => {
+    const elementItem = e.target.closest('.elements__card');
+    elementItem.remove();
 }
+);
 
-console.log(getLike)
+ilyaCard.querySelector('.elements__delete-button').addEventListener("click", (e) => {
+    const elementItem = e.target.closest('.elements__card');
+    elementItem.remove();
+}
+);
 
+germanCard.querySelector('.elements__delete-button').addEventListener("click", (e) => {
+    const elementItem = e.target.closest('.elements__card');
+    elementItem.remove();
+}
+);
 
+jurezCard.querySelector('.elements__delete-button').addEventListener("click", (e) => {
+    const elementItem = e.target.closest('.elements__card');
+    elementItem.remove();
+}
+);
+
+pashaCard.querySelector('.elements__delete-button').addEventListener("click", (e) => {
+    const elementItem = e.target.closest('.elements__card');
+    elementItem.remove();
+}
+);
+
+mishaCard.querySelector('.elements__delete-button').addEventListener("click", (e) => {
+    const elementItem = e.target.closest('.elements__card');
+    elementItem.remove();
+}
+);
 
