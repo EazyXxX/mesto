@@ -1,5 +1,11 @@
 .elements__image {
     border-radius: 10px 10px 0 0;
     max-width: 282px;
-    max-height: 282px;
+    height: 282px;
+    border: 0;
+    background: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 282px 282px;
+    cursor: pointer;
 }
