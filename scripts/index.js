@@ -23,7 +23,6 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-
 buttonEditOpen.addEventListener('click', () => openPopup(popupEdit));
 closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 buttonCardOpen.addEventListener('click', () => openPopup(popupCard));
@@ -60,15 +59,11 @@ function addCard(moniker, link) {
     cardImage.alt = moniker;
     cardImage.src = link;
 
-    
-
     //deletion
     newCardElement.querySelector('.elements__delete-button').addEventListener("click", () => {
         cardWhole.remove();
     }
     );
-
-
 
     //like
     const getNewLike = function () {
@@ -82,7 +77,7 @@ function addCard(moniker, link) {
 }
 
 const boys = [
-    
+
     {
         name: 'Мишган',
         link: './images/Misha.png'
@@ -112,7 +107,7 @@ const boys = [
 //creating boys
 boys.forEach((el) => {
     const boyCards = addCard(el.name, el.link)
-    
+
     const newLike = boyCards.querySelector('.elements__like');
     const getNewLike = function () {
         newLike.addEventListener("click", () => {
@@ -121,17 +116,16 @@ boys.forEach((el) => {
     };
     getNewLike();
     elementsList.prepend(boyCards);
-     //bigPicture    
-     const cardImage = document.querySelector('.elements__image');
-     cardImage.addEventListener("click", () => openPopup(popupPicture));
-     const newPhoto = function () {
-         popupBigPicture.src = `${el.link}`;
-         popupBigPicture.alt = `${el.name}`;
-         popupPicMoniker.textContent = `${el.name}`;
-     };
-     cardImage.addEventListener("click", newPhoto);
+    //bigPicture    
+    const cardImage = document.querySelector('.elements__image');
+    cardImage.addEventListener("click", () => openPopup(popupPicture));
+    const newPhoto = function () {
+        popupBigPicture.src = `${el.link}`;
+        popupBigPicture.alt = `${el.name}`;
+        popupPicMoniker.textContent = `${el.name}`;
+    };
+    cardImage.addEventListener("click", newPhoto);
 });
-
 
 //creating new card
 function newCardCreation(evt) {
@@ -141,21 +135,18 @@ function newCardCreation(evt) {
     elementsList.prepend(addCard(cardInput, linkInput));
     closePopup(popupCard);
     const cardImage = document.querySelector('.elements__image');
-        //bigPicture    
-        cardImage.addEventListener("click", () => openPopup(popupPicture));
-        const newPhoto = function () {
-            popupBigPicture.src = `${linkInput}`;
-            popupBigPicture.alt = `${cardInput}`;
-            popupPicMoniker.textContent = `${cardInput}`;
-        };
-        cardImage.addEventListener("click", newPhoto);
+    //bigPicture    
+    cardImage.addEventListener("click", () => openPopup(popupPicture));
+    const newPhoto = function () {
+        popupBigPicture.src = `${linkInput}`;
+        popupBigPicture.alt = `${cardInput}`;
+        popupPicMoniker.textContent = `${cardInput}`;
+    };
+    cardImage.addEventListener("click", newPhoto);
 }
 
 
-
 cardPopupForm.addEventListener('submit', newCardCreation);
-
-
 
 const like = document.querySelectorAll('.elements__like');
 
@@ -164,5 +155,3 @@ const getLike = like.forEach((button) => {
         button.classList.toggle('elements__like_active');
     });
 });
-
-
