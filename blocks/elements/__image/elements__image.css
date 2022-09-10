@@ -3,9 +3,8 @@
     max-width: 282px;
     height: 282px;
     border: 0;
-    background: contain;
-    background-position: center;
+    padding: 0;
+    width: 100%;
     background-repeat: no-repeat;
     background-size: 282px 282px;
-    cursor: pointer;
 }
