@@ -45,17 +45,17 @@ buttonEditClose.addEventListener("click", () => closePopup(popupEdit));
 buttonCardOpen.addEventListener("click", () => openPopup(popupCard));
 buttonCardClose.addEventListener("click", () => closePopup(popupCard));
 buttonPictureClose.addEventListener("click", () => closePopup(popupPicture));
-popupCard.addEventListener("click", function(e) {
+popupCard.addEventListener("mousedown", function(e) {
   if(e.target === popupCard && e.target !== popupWindow && popupCard.classList.contains('popup_opened')) {
     closePopup(popupCard);
   }
 });
-popupPicture.addEventListener("click", function(e) {
+popupPicture.addEventListener("mousedown", function(e) {
   if(e.target === popupPicture && e.target !== popupWindow && popupPicture.classList.contains('popup_opened')) {
     closePopup(popupPicture);
   }
 });
-popupEdit.addEventListener("click", function(e) {
+popupEdit.addEventListener("mousedown", function(e) {
   if(e.target === popupEdit && e.target !== popupWindow && popupEdit.classList.contains('popup_opened')) {
     closePopup(popupEdit);
   }
