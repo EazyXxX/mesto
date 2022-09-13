@@ -2,7 +2,7 @@ const validationConfigEdit = {
   formSelector: ".popup__form_type_edit",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: ".popup__save-button_type_invalid",
+  inactiveButtonClass: "popup__save-button_type_invalid",
   inputErrorClass: ".popup__input_type_error",
   errorClass: ".popup__error_type_visible",
 };
@@ -11,20 +11,25 @@ const validationConfigCard = {
   formSelector: ".popup__form_type_card",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: ".popup__save-button_type_invalid",
+  inactiveButtonClass: "popup__save-button_type_invalid",
   inputErrorClass: ".popup__input_type_error",
   errorClass: ".popup__error_type_visible",
 };
 
 function validateInput(form, input, config) {
   const error = form.querySelector(`#${input.id}-error`);
+  const saveButton = form.querySelector(config.submitButtonSelector);
   if (!input.validity.valid) {
     input.classList.add(config.inputErrorClass);
+    saveButton.classList.add(config.inactiveButtonClass);
+    saveButton.classList.remove(config.submitButtonSelector);
     error.classList.add(config.errorClass);
     error.textContent = input.validationMessage;
   } else {
     input.classList.remove(config.inputErrorClass);
     error.classList.remove(config.errorClass);
+    saveButton.classList.remove(config.inactiveButtonClass);
+    saveButton.classList.add(config.submitButtonSelector);
     error.textContent = "";
   }
 }

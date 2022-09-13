@@ -8,6 +8,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     position: relative;
+    cursor: default;
 }
 
 @media screen and (max-width: 770px) {
