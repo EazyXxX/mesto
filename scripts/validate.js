@@ -1,4 +1,13 @@
-const validationConfig = {
+const validationConfigEdit = {
+  formSelector: ".popup__form_type_edit",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: ".popup__save-button_type_invalid",
+  inputErrorClass: ".popup__input_type_error",
+  errorClass: ".popup__error_type_visible",
+};
+
+const validationConfigCard = {
   formSelector: ".popup__form_type_card",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
@@ -8,7 +17,7 @@ const validationConfig = {
 };
 
 function validateInput(form, input, config) {
-  const error = form.querySelector(".input-error");
+  const error = form.querySelector(`#${input.id}-error`);
   if (!input.validity.valid) {
     input.classList.add(config.inputErrorClass);
     error.classList.add(config.errorClass);
@@ -39,4 +48,5 @@ function enableValidation(config) {
   setHandlers(cardForm, config);
 }
 
-enableValidation(validationConfig);
+enableValidation(validationConfigEdit);
+enableValidation(validationConfigCard);
