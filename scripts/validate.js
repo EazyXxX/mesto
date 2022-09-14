@@ -19,17 +19,15 @@ const validationConfigCard = {
 function validateInput(form, input, config) {
   const error = form.querySelector(`#${input.id}-error`);
   const saveButton = form.querySelector(config.submitButtonSelector);
-  if (!input.validity.valid) {
+  if (!input.validity.valid && input.value !== "") {
     input.classList.add(config.inputErrorClass);
     saveButton.classList.add(config.inactiveButtonClass);
-    saveButton.classList.remove(config.submitButtonSelector);
     error.classList.add(config.errorClass);
     error.textContent = input.validationMessage;
   } else {
     input.classList.remove(config.inputErrorClass);
     error.classList.remove(config.errorClass);
     saveButton.classList.remove(config.inactiveButtonClass);
-    saveButton.classList.add(config.submitButtonSelector);
     error.textContent = "";
   }
 }
