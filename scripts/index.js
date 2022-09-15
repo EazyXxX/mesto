@@ -17,7 +17,8 @@ const buttonPictureClose = document.querySelector(
 );
 const popupBigPicture = document.querySelector(".popup__picture");
 const popupPicMoniker = document.querySelector(".popup__pic-moniker");
-const buttonSave = popupEdit.querySelector(".popup__save-button");
+const buttonSaveEdit = popupEdit.querySelector(".popup__save-button");
+const buttonSaveCard = popupCard.querySelector(".popup__save-button");
 const profileName = document.querySelector(".profile__name");
 const profileSubname = document.querySelector(".profile__description");
 const linkInput = document.querySelector(".popup__input_type_link");
@@ -109,8 +110,10 @@ function newCardCreation(evt) {
   const linkInputValue = linkInput.value;
   const cardInputValue = cardInput.value;
   elementsList.prepend(addCard(cardInputValue, linkInputValue));
+  linkInput.value = "";
+  cardInput.value = "";
+  buttonSaveCard.classList.add('popup__save-button_type_invalid');
   closePopup(popupCard);
-  const cardImage = document.querySelector(".elements__image");
 }
 
 cardPopupForm.addEventListener("submit", newCardCreation);

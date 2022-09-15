@@ -19,11 +19,21 @@ const validationConfigCard = {
 function validateInput(form, input, config) {
   const error = form.querySelector(`#${input.id}-error`);
   const saveButton = form.querySelector(config.submitButtonSelector);
-  if (!input.validity.valid && input.value !== "") {
+  const inputCardName = form.querySelector(".popup__input_type_card-name");
+  const inputCardLink = form.querySelector(".popup__input_type_link");
+
+  if (!inputCardLink.validity.valid) {
     input.classList.add(config.inputErrorClass);
     saveButton.classList.add(config.inactiveButtonClass);
     error.classList.add(config.errorClass);
     error.textContent = input.validationMessage;
+    !inputCardName.validity.valid;
+  } else if (!inputCardName.validity.valid) {
+    input.classList.add(config.inputErrorClass);
+    saveButton.classList.add(config.inactiveButtonClass);
+    error.classList.add(config.errorClass);
+    error.textContent = input.validationMessage;
+    !inputCardLink.validity.valid;
   } else {
     input.classList.remove(config.inputErrorClass);
     error.classList.remove(config.errorClass);
