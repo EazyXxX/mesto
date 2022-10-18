@@ -20,7 +20,7 @@
           <form
             class="popup__form popup__form_type_edit"
             id="editForm"
-            name="popupForm"
+            name="popupFormEdit"
           >
             <input
               class="popup__input popup__input_type_name"
@@ -31,10 +31,10 @@
               required
               minlength="2"
               maxlength="40"
-              id="edit-name"
+              id="inputName"
             />
             <span
-              id="edit-name-error"
+              id="inputName-error"
               class="input-error input-error_type_name"
             ></span>
             <input
@@ -46,13 +46,15 @@
               required
               minlength="2"
               maxlength="200"
-              id="edit-subname"
+              id="inputSubname"
             />
             <span
-              id="edit-subname-error"
+              id="inputSubname-error"
               class="input-error input-error_type_subname"
             ></span>
-            <button type="submit" class="popup__save-button">Сохранить</button>
+            <button type="submit" class="popup__save-button" id="submitEdit">
+              Сохранить
+            </button>
           </form>
         </div>
       </div>
@@ -67,7 +69,7 @@
           <form
             class="popup__form popup__form_type_card"
             id="cardForm"
-            name="popupForm"
+            name="popupFormCard"
           >
             <input
               class="popup__input popup__input_type_card-name"
@@ -78,10 +80,10 @@
               required
               minlength="2"
               maxlength="30"
-              id="card-name"
+              id="inputCard"
             />
             <span
-              id="card-name-error"
+              id="inputCard-error"
               class="input-error input-error_type_card"
             ></span>
             <input
@@ -91,16 +93,13 @@
               value=""
               placeholder="Ссылка на картинку"
               required
-              id="card-url"
+              id="inputLink"
             />
             <span
-              id="card-url-error"
+              id="inputLink-error"
               class="input-error input-error_type_link"
             ></span>
-            <button
-              type="submit"
-              class="popup__save-button popup__save-button_type_invalid"
-            >
+            <button type="submit" class="popup__save-button" id="submitCard">
               Сохранить
             </button>
           </form>

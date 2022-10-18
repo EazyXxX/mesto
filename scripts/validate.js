@@ -1,65 +1,53 @@
-const validationConfigEdit = {
+const popupSelectorEdit = {
   formSelector: ".popup__form_type_edit",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: "popup__save-button_type_invalid",
-  inputErrorClass: ".popup__input_type_error",
-  errorClass: ".popup__error_type_visible",
+  inputSelectorName: ".popup__input_type_name",
+  inputSelectorSubname: ".popup__input_type_subname",
+  submitSelector: "#submitEdit",
 };
 
-const validationConfigCard = {
+const popupSelectorCard = {
   formSelector: ".popup__form_type_card",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: "popup__save-button_type_invalid",
-  inputErrorClass: ".popup__input_type_error",
-  errorClass: ".popup__error_type_visible",
+  inputSelectorName: ".popup__input_type_card-name",
+  inputSelectorSubname: ".popup__input_type_link",
+  submitSelector: "#submitCard",
 };
 
-function validateInput(form, input, config) {
-  const error = form.querySelector(`#${input.id}-error`);
-  const saveButton = form.querySelector(config.submitButtonSelector);
-  const inputCardName = form.querySelector(".popup__input_type_card-name");
-  const inputCardLink = form.querySelector(".popup__input_type_link");
-
-  if (!inputCardLink.validity.valid) {
-    input.classList.add(config.inputErrorClass);
-    saveButton.classList.add(config.inactiveButtonClass);
-    error.classList.add(config.errorClass);
-    error.textContent = input.validationMessage;
-    !inputCardName.validity.valid;
-  } else if (!inputCardName.validity.valid) {
-    input.classList.add(config.inputErrorClass);
-    saveButton.classList.add(config.inactiveButtonClass);
-    error.classList.add(config.errorClass);
-    error.textContent = input.validationMessage;
-    !inputCardLink.validity.valid;
+//formEdit
+const validateInput = (inputElement, config) => {
+  const errorElement = document.querySelector(`#${inputElement.id}-error`);
+  const popupSelect = document.querySelector(`${config.formSelector}`);
+  const submitButton = document.querySelector(`${config.submitSelector}`);
+  if (popupSelect.checkValidity()) {
+    errorElement.textContent = "";
+    submitButton.classList.remove("popup__save-button_type_invalid");
   } else {
-    input.classList.remove(config.inputErrorClass);
-    error.classList.remove(config.errorClass);
-    saveButton.classList.remove(config.inactiveButtonClass);
-    error.textContent = "";
+    errorElement.textContent = inputElement.validationMessage;
+    submitButton.classList.add("popup__save-button_type_invalid");
   }
-}
+};
 
-function setHandlers(form, config) {
-  const cardInputs = Array.from(form.querySelectorAll(config.inputSelector));
+const validateForm = (config) => {
+  const inputName = document.querySelector(`${config.inputSelectorName}`);
+  const inputSubname = document.querySelector(`${config.inputSelectorSubname}`);
 
-  cardInputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      validateInput(form, input, config);
-    });
+  validateInput(inputName, config);
+  validateInput(inputSubname, config);
+};
+
+const enableValidation = (config) => {
+  const popupSelect = document.querySelector(`${config.formSelector}`);
+  popupSelect.addEventListener("submit", validateForm(config));
+  popupSelect.addEventListener("input", (e) => {
+    validateInput(e.target, config);
   });
-}
-
-function enableValidation(config) {
-  const cardForm = document.querySelector(config.formSelector);
-
-  cardForm.addEventListener("submit", (evt) => {
-    evt.preventDefault();
+  popupSelect.addEventListener("submit", (event) => {
+    event.preventDefault();
   });
-  setHandlers(cardForm, config);
-}
+  if (popupSelect.checkValidity()) {
+    popupSelect.reset();
+  } else {
+  }
+};
 
-enableValidation(validationConfigEdit);
-enableValidation(validationConfigCard);
+enableValidation(popupSelectorEdit);
+enableValidation(popupSelectorCard);
