@@ -48,6 +48,10 @@ const enableValidation = (config) => {
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
+
+      if (formElement.checkValidity()) {
+        formElement.reset();
+      }
     });
 
     formList.forEach((fieldSet) => {
