@@ -1,4 +1,4 @@
-const boys = [
+export const boys = [
   {
     name: "Мишган",
     link: "./images/Misha.png",

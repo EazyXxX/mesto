@@ -1,3 +1,7 @@
+import { Card } from "./Card.js";
+import { boys } from "./boys.js";
+import { FormValidator} from "./FormValidator.js";
+
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupCard = document.querySelector(".popup_type_card");
 const popupPicture = document.querySelector(".popup_type_picture");
@@ -29,6 +33,22 @@ const nameInput = popupEdit.querySelector(".popup__input_type_name");
 const jobInput = popupEdit.querySelector(".popup__input_type_subname");
 const elementsList = document.querySelector("#list");
 const templateElement = document.querySelector(".template");
+const editSettings = {
+  formSelector: ".popup__form_type_edit",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_type_invalid",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_type_visible",
+};
+const cardSettings = {
+  formSelector: ".popup__form_type_card",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_type_invalid",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_type_visible",
+};
 
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
@@ -65,58 +85,34 @@ function editFormSubmitHandler(evt) {
   closePopup(popupEdit);
 }
 
-function addCard(moniker, link) {
-  const newCardElement = templateElement.content.cloneNode(true);
-  const cardWhole = newCardElement.querySelector(".elements__card");
-  const cardImage = newCardElement.querySelector(".elements__image");
-  const newLike = newCardElement.querySelector(".elements__like");
-  newLike.addEventListener("click", () => {
-    newLike.classList.toggle("elements__like_active");
-  });
-  const elementName = newCardElement.querySelector(".elements__name");
-
-  elementName.textContent = moniker;
-  cardImage.alt = moniker;
-  cardImage.src = link;
-
-  //deletion
-  newCardElement
-    .querySelector(".elements__delete-button")
-    .addEventListener("click", () => {
-      cardWhole.remove();
-    });
-
-  //big picture
-  cardImage.addEventListener("click", () => openPopup(popupPicture));
-  const newPhoto = function () {
-    popupBigPicture.src = `${link}`;
-    popupBigPicture.alt = `${moniker}`;
-    popupPicMoniker.textContent = `${moniker}`;
-  };
-  cardImage.addEventListener("click", newPhoto);
-
-  return newCardElement;
-}
-
-//creating boys
-boys.forEach((el) => {
-  const boyCards = addCard(el.name, el.link);
-  elementsList.prepend(boyCards);
-});
-
 //creating new card
 function newCardCreation(evt) {
   evt.preventDefault();
-  const linkInputValue = linkInput.value;
-  const cardInputValue = cardInput.value;
-  elementsList.prepend(addCard(cardInputValue, linkInputValue));
+  const moniker = cardInput.value;
+  const link = linkInput.value;
+  const card = new Card(moniker, link);
+  elementsList.prepend(card.createCard());
   linkInput.value = "";
   cardInput.value = "";
-  buttonSaveCard.classList.add('popup__save-button_type_invalid');
+  buttonSaveCard.classList.add("popup__save-button_type_invalid");
   closePopup(popupCard);
 }
+
+const createBoys = function () {
+  boys.forEach((el) => {
+    const card = new Card(el.name, el.link);
+    elementsList.prepend(card.createCard());
+  });
+};
+createBoys();
 
 cardPopupForm.addEventListener("submit", newCardCreation);
 buttonEditOpen.addEventListener("click", () => openPopup(popupEdit));
 buttonCardOpen.addEventListener("click", () => openPopup(popupCard));
 popupFormEdit.addEventListener("submit", editFormSubmitHandler);
+
+const editValidate = new FormValidator();
+const cardValidate = new FormValidator();
+
+editValidate.enableValidation(editSettings);
+cardValidate.enableValidation(cardSettings);
