@@ -1,6 +1,6 @@
 import { Card } from "./Card.js";
 import { boys } from "./boys.js";
-import { FormValidator} from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
 
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupCard = document.querySelector(".popup_type_card");
@@ -111,8 +111,8 @@ buttonEditOpen.addEventListener("click", () => openPopup(popupEdit));
 buttonCardOpen.addEventListener("click", () => openPopup(popupCard));
 popupFormEdit.addEventListener("submit", editFormSubmitHandler);
 
-const editValidate = new FormValidator();
-const cardValidate = new FormValidator();
+const editValidate = new FormValidator(editSettings);
+const cardValidate = new FormValidator(cardSettings);
 
 editValidate.enableValidation(editSettings);
 cardValidate.enableValidation(cardSettings);
