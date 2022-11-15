@@ -19,17 +19,7 @@ export class Card {
     this._image.src = this._link;
     this._image.alt = this._name;
     this._placeName.textContent = this._name;
-
-    const popup = document.querySelector(".popup_type_picture");
-    const popupBigPicture = document.querySelector(".popup__picture");
-
-    this._image.addEventListener("click", () => {
-      const popupPicMoniker = document.querySelector(".popup__pic-moniker");
-      popupBigPicture.src = `${this._link}`;
-      popupBigPicture.alt = `${this._name}`;
-      popupPicMoniker.textContent = `${this._name}`;
-    });
-
+    
     this._setEventListeners();
 
     return this._card;
