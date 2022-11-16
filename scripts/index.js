@@ -6,10 +6,9 @@ const popupEdit = document.querySelector(".popup_type_edit");
 const popupCard = document.querySelector(".popup_type_card");
 const popupPicture = document.querySelector(".popup_type_picture");
 const popupFormEdit = document.querySelector(".popup__form_type_edit");
-const cardPopupForm = document.querySelector(".popup__form_type_card");
+const popupFormCard = document.querySelector(".popup__form_type_card");
 const buttonEditOpen = document.querySelector(".profile__edit-button");
 const buttonCardOpen = document.querySelector(".profile__plus-button");
-const buttonSaveCard = popupCard.querySelector(".popup__save-button");
 const profileName = document.querySelector(".profile__name");
 const profileSubname = document.querySelector(".profile__description");
 const linkInput = document.querySelector(".popup__input_type_link");
@@ -40,8 +39,7 @@ function closeByEscape(evt) {
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
-  editValidate.resetValidation();
-  cardValidate.resetValidation();
+  deactivateButton();
 }
 
 function closePopup(popup) {
@@ -96,13 +94,27 @@ boys.forEach((el) => {
   elementsList.prepend(boyCards);
 });
 
-cardPopupForm.addEventListener("submit", addNewCard);
+popupFormCard.addEventListener("submit", addNewCard);
 buttonEditOpen.addEventListener("click", () => openPopup(popupEdit));
 buttonCardOpen.addEventListener("click", () => openPopup(popupCard));
 popupFormEdit.addEventListener("submit", editFormSubmitHandler);
 
-const cardValidate = new FormValidator(settings);
-const editValidate = new FormValidator(settings);
+const formValidators = {};
 
-editValidate.enableValidation();
-cardValidate.enableValidation();
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config);
+    const formName = formElement.getAttribute("name");
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(settings);
+
+function deactivateButton() {
+  formValidators[popupFormEdit.getAttribute("name")].resetValidation();
+  formValidators[popupFormCard.getAttribute("name")].resetValidation();
+}
