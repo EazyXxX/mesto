@@ -39,7 +39,6 @@ function closeByEscape(evt) {
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
-  deactivateButton();
 }
 
 function closePopup(popup) {
@@ -84,8 +83,8 @@ function addNewCard(evt) {
   elementsList.prepend(
     createCard(cardInput.value, linkInput.value, handleCardClick)
   );
-  linkInput.value = "";
-  cardInput.value = "";
+  evt.target.reset();
+  formValidators[popupFormCard.getAttribute("name")].resetValidation();
   closePopup(popupCard);
 }
 
@@ -95,7 +94,12 @@ boys.forEach((el) => {
 });
 
 popupFormCard.addEventListener("submit", addNewCard);
-buttonEditOpen.addEventListener("click", () => openPopup(popupEdit));
+buttonEditOpen.addEventListener("click", () => {
+  formValidators[popupFormEdit.getAttribute("name")].resetValidation();
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileSubname.textContent;
+  openPopup(popupEdit);
+});
 buttonCardOpen.addEventListener("click", () => openPopup(popupCard));
 popupFormEdit.addEventListener("submit", editFormSubmitHandler);
 
@@ -113,8 +117,3 @@ const enableValidation = (config) => {
 };
 
 enableValidation(settings);
-
-function deactivateButton() {
-  formValidators[popupFormEdit.getAttribute("name")].resetValidation();
-  formValidators[popupFormCard.getAttribute("name")].resetValidation();
-}
