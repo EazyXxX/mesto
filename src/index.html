@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
   </head>
 
@@ -119,13 +118,13 @@
       </div>
 
       <header class="header">
-        <img class="header__logo" src="./images/Vector.svg" alt="Место" />
+        <img class="header__logo" src="<%=require('./images/Vector.svg')%>" alt="Место"/>
       </header>
       <main>
         <section class="profile">
           <img
             class="profile__avatar"
-            src="./images/Kusto.png"
+            src="<%=require('./images/Kusto.png')%>"
             alt="Фото профиля"
           />
           <div class="profile__info">
@@ -154,7 +153,7 @@
     <template class="template" id="template">
       <li class="elements__card">
         <button class="elements__img-button" type="button">
-          <img class="elements__image">
+          <img class="elements__image" />
         </button>
         <button
           type="button"
@@ -171,6 +170,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
