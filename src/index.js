@@ -28,18 +28,18 @@ const popupPictureClass = new PopupWithImage(popupSelector.popupPicture);
 
 function addNewCard(moniker, link) {
   const newCard = new Card(moniker, link, popupPictureClass.open);
-  section.addItem(newCard.createCard());
+  cardContainer.addItem(newCard.createCard());
 }
 const data = {boys, addNewCard}
 
-const section = new Section(data, elementsList);
+const cardContainer = new Section(data, elementsList);
 const newUser = new UserInfo();
 const popupEditClass = new PopupWithForm(popupSelector.popupEdit, newUser.setUserInfo);
 const popupCardClass = new PopupWithForm(popupSelector.popupCard, addNewCard);
 popupEditClass.setEventListeners();
 popupCardClass.setEventListeners();
 //добавление карточек пацанов
-section.renderAllItems()
+cardContainer.renderAllItems()
 
 // слушатели
 buttonEditOpen.addEventListener("click", () => {

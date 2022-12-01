@@ -10,16 +10,15 @@ export class PopupWithForm extends Popup {
     this._profileSubname = document.querySelector(".profile__description");
     this._cardMoniker = this._popupSelector.querySelector(".popup__input_type_card-name");
     this._cardLink = this._popupSelector.querySelector(".popup__input_type_link");
+    this._inputList = Array.from(this._popupSelector.querySelectorAll(".popup__input"));
+    this._inputValues = {};
   }
 
   _getInputValues() {
-    const nameInput = document.querySelector(".popup__input_type_name").value;
-    const subnameInput = document.querySelector(".popup__input_type_subname").value;
-    const inputData = {
-      name: nameInput,
-      subname: subnameInput
-    }
-    return inputData
+    this._inputList.forEach((input) => {
+      this._inputValues[input.name] = input.value;
+    });
+    return this._inputValues;
   }
   
   setEventListeners() {
@@ -36,11 +35,7 @@ export class PopupWithForm extends Popup {
     //обработчик сабмита формы
     this._popupForm.addEventListener("submit", (evt) => { 
       evt.preventDefault();
-      if (this._popupSelector === document.querySelector(".popup_type_edit")) {
-        this._handleFormSubmit(this._getInputValues());
-      } else {
-        this._handleFormSubmit(this._cardMoniker.value, this._cardLink.value);
-      }
+      this._handleFormSubmit(this._getInputValues().name, this._getInputValues().subname);
       this.close();
     }); 
   }
