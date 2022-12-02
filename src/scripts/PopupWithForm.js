@@ -35,7 +35,8 @@ export class PopupWithForm extends Popup {
     //обработчик сабмита формы
     this._popupForm.addEventListener("submit", (evt) => { 
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues().name, this._getInputValues().subname);
+      this._handleFormSubmit(this._getInputValues());
+      console.log(this._getInputValues())
       this.close();
     }); 
   }

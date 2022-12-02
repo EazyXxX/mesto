@@ -11,7 +11,6 @@ export class PopupWithImage extends Popup {
       this._popupBigPicture.alt = moniker;
       this._popupPicMoniker.textContent = moniker;
       super.open()
-      super.setEventListeners()
     }
   }
 }

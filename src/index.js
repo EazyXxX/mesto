@@ -25,15 +25,16 @@ const popupSelector = {
 };
 
 const popupPictureClass = new PopupWithImage(popupSelector.popupPicture);
+popupPictureClass.setEventListeners();
 
-function addNewCard(moniker, link) {
-  const newCard = new Card(moniker, link, popupPictureClass.open);
+function addNewCard(data) {
+  const newCard = new Card(data, popupPictureClass.open);
   cardContainer.addItem(newCard.createCard());
 }
 const data = {boys, addNewCard}
 
-const cardContainer = new Section(data, elementsList);
-const newUser = new UserInfo();
+const cardContainer = new Section(boys, addNewCard, elementsList);
+const newUser = new UserInfo(profileName, profileSubname);
 const popupEditClass = new PopupWithForm(popupSelector.popupEdit, newUser.setUserInfo);
 const popupCardClass = new PopupWithForm(popupSelector.popupCard, addNewCard);
 popupEditClass.setEventListeners();

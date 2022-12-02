@@ -1,13 +1,18 @@
 export class Section {
-  constructor(data, containerSelector) {
-    this._renderedItems = data.boys;
-    this._renderer = data.addNewCard;
+  constructor(boys, addNewCard, containerSelector) {
+    this._renderedItems = boys;
+    this._renderer = addNewCard;
+    console.log(this._renderer)
     this._container = containerSelector;
   }
 
   // для карточек пацанов
   renderAllItems() {
-    this._renderedItems.forEach((item) => this._renderer(item.name, item.link));
+    this._renderedItems.forEach((item) => {
+      const name = item.name
+      const subname = item.subname
+      this._renderer({name, subname});
+    })
   }
 
   // вставка инстанса Card в контейнер

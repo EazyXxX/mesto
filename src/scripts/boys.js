@@ -8,26 +8,26 @@ const glebImage  = new URL('../images/Gleb.png', import.meta.url);
 export const boys = [
   {
     name: "Мишган",
-    link: mishaImage,
+    subname: mishaImage,
   },
   {
     name: "Паша",
-    link: pashaImage,
+    subname: pashaImage,
   },
   {
     name: "Юрец",
-    link: jurezImage,
+    subname: jurezImage,
   },
   {
     name: "Герман",
-    link: germanImage,
+    subname: germanImage,
   },
   {
     name: "Илья",
-    link: ilyaImage,
+    subname: ilyaImage,
   },
   {
     name: "Глеб",
-    link: glebImage,
+    subname: glebImage,
   },
 ];
