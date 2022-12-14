@@ -14,6 +14,7 @@
   background-position: center;
   background-repeat: no-repeat;
   border: 0;
+  display: none;
 }
 
 .elements__delete-button:hover {

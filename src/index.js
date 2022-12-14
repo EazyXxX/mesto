@@ -7,9 +7,13 @@ import { Popup } from "./scripts/Popup.js";
 import { UserInfo } from "./scripts/UserInfo.js";
 import { PopupWithImage } from "./scripts/PopupWithImage.js";
 import { PopupWithForm } from "./scripts/PopupWithForm.js";
+import { PopupDelete } from "./scripts/PopupDelete.js";
+import { PopupAvatar } from "./scripts/PopupAvatar.js";
+import { Api } from "./scripts/Api.js";
 
 const popupFormEdit = document.querySelector(".popup__form_type_edit");
 const popupFormCard = document.querySelector(".popup__form_type_card");
+const popupFormDelete = document.querySelector(".popup__form_type_delete");
 const buttonEditOpen = document.querySelector(".profile__edit-button");
 const buttonCardOpen = document.querySelector(".profile__plus-button");
 const profileName = document.querySelector(".profile__name");
@@ -17,30 +21,93 @@ const profileSubname = document.querySelector(".profile__description");
 const nameInput = popupFormEdit.querySelector(".popup__input_type_name");
 const jobInput = popupFormEdit.querySelector(".popup__input_type_subname");
 const elementsList = document.querySelector("#list");
+const profileAvatar = document.querySelector(".profile__avatar");
+const profileAvatarButton = document.querySelector(".profile__avatar-button");
+const popupAvatarSubmitButton = document.querySelector("#submitAvatar");
 
 const popupSelector = {
   popupEdit: ".popup_type_edit",
   popupCard: ".popup_type_card",
-  popupPicture: ".popup_type_picture"
+  popupPicture: ".popup_type_picture",
+  popupDelete: ".popup_type_delete",
+  popupAvatar: ".popup_type_avatar",
 };
+
+//получение изначальных карточек с сервера
+const api = new Api();
+const initialCards = api.getInitialCards();
+const userInfo = api.getUserInfo();
+
+//это нужно для добавления всех изначальных карточек
+function addNewCard(data) {
+  const newCard = new Card(
+    data,
+    popupPictureClass.open,
+    api.deleteCard,
+    api.likeCard,
+    api.deleteLike
+  );
+  const popupDeleteClassCard = new PopupDelete(
+    popupSelector.popupDelete,
+    newCard.deleteCard
+  );
+  newCard.deleteBtn.addEventListener("click", () =>
+    popupDeleteClassCard.open()
+  );
+  cardContainer.addItem(newCard.createCard());
+}
+
+function handleProfileData(name, subname, avatar) {
+  profileName.textContent = name;
+  profileSubname.textContent = subname;
+  profileAvatar.src = avatar;
+}
+
+//замена аватарки
+const popupAvatarClass = new PopupAvatar(
+  popupSelector.popupAvatar,
+  api.patchAvatar,
+  renderLoading
+);
+popupAvatarClass.setEventListeners();
+profileAvatarButton.addEventListener("click", popupAvatarClass.open);
+
+function renderLoading(isLoading, submitButton) {
+  if (isLoading) {
+    submitButton.textContent = "Сохранение...";
+  } else {
+    submitButton.textContent = "Сохранить";
+  }
+}
 
 const popupPictureClass = new PopupWithImage(popupSelector.popupPicture);
 popupPictureClass.setEventListeners();
-
-function addNewCard(data) {
-  const newCard = new Card(data, popupPictureClass.open);
-  cardContainer.addItem(newCard.createCard());
-}
-const data = {boys, addNewCard}
-
-const cardContainer = new Section(boys, addNewCard, elementsList);
-const newUser = new UserInfo(profileName, profileSubname);
-const popupEditClass = new PopupWithForm(popupSelector.popupEdit, newUser.setUserInfo);
-const popupCardClass = new PopupWithForm(popupSelector.popupCard, addNewCard);
+const cardContainer = new Section(initialCards, addNewCard, elementsList);
+const newUser = new UserInfo(
+  profileName,
+  profileSubname,
+  userInfo,
+  handleProfileData
+);
+const popupEditClass = new PopupWithForm(
+  popupSelector.popupEdit,
+  newUser.setUserInfo,
+  api.patchUserInfo,
+  renderLoading
+);
+const popupCardClass = new PopupWithForm(
+  popupSelector.popupCard,
+  addNewCard,
+  api.addCard,
+  renderLoading
+);
 popupEditClass.setEventListeners();
 popupCardClass.setEventListeners();
-//добавление карточек пацанов
-cardContainer.renderAllItems()
+//добавление изначальных карточек
+cardContainer.renderAllItems();
+
+newUser.getUserInfo();
+handleProfileData();
 
 // слушатели
 buttonEditOpen.addEventListener("click", () => {

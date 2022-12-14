@@ -39,7 +39,7 @@
             <input
               class="popup__input popup__input_type_subname"
               type="text"
-              name="subname"
+              name="link"
               value=""
               placeholder="Предназначение"
               required
@@ -88,7 +88,7 @@
             <input
               class="popup__input popup__input_type_link"
               type="url"
-              name="subname"
+              name="link"
               value=""
               placeholder="Ссылка на картинку"
               required
@@ -117,11 +117,69 @@
         </div>
       </div>
 
+      <div class="popup popup_type_delete">
+        <div class="popup__window">
+          <button
+            class="popup__cross-button popup__cross-button_type_delete"
+            type="button"
+            aria-label="close"
+          ></button>
+          <h2 class="popup__header">Вы уверены?</h2>
+          <form
+            class="popup__form popup__form_type_delete"
+            id="deleteForm"
+            name="popupFormDelete"
+          >
+            <button type="submit" class="popup__save-button popup__save-button_type_delete" id="submitDelete">
+              Да
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_type_avatar">
+        <div class="popup__window">
+          <button
+            class="popup__cross-button popup__cross-button_type_avatar"
+            type="button"
+            aria-label="close"
+          ></button>
+          <h2 class="popup__header">Обновить аватар</h2>
+          <form
+            class="popup__form popup__form_type_avatar"
+            id="avatarForm"
+            name="popupFormAvatar"
+          >
+            <input
+              class="popup__input popup__input_type_avatar-link"
+              type="url"
+              name="avatar"
+              placeholder="Ссылка на аватар"
+              value=""
+              required
+              id="inputAvatar"
+            />
+            <span
+              id="inputAvatar-error"
+              class="input-error input-error_type_avatar"
+            ></span>
+            <button type="submit" class="popup__save-button" id="submitAvatar">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+
       <header class="header">
-        <img class="header__logo" src="<%=require('./images/Vector.svg')%>" alt="Место"/>
+        <img
+          class="header__logo"
+          src="<%=require('./images/Vector.svg')%>"
+          alt="Место"
+        />
       </header>
       <main>
         <section class="profile">
+          <button class="profile__avatar-button" type="button" aria-label="avatar-button"></button>
           <img
             class="profile__avatar"
             src="<%=require('./images/Kusto.png')%>"
@@ -153,7 +211,7 @@
     <template class="template" id="template">
       <li class="elements__card">
         <button class="elements__img-button" type="button">
-          <img class="elements__image"/>
+          <img class="elements__image" />
         </button>
         <button
           type="button"
@@ -162,11 +220,15 @@
         ></button>
         <div class="elements__card-footer">
           <h2 class="elements__name"></h2>
+          <div class="elements__like-elements">
           <button
             class="elements__like"
             type="button"
             aria-label="лайк"
           ></button>
+          <p class="elements__like-counter">0</p>
+          </div>
+          </div>
         </div>
       </li>
     </template>
