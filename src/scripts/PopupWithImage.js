@@ -10,7 +10,12 @@ export class PopupWithImage extends Popup {
       this._popupBigPicture.src = link;
       this._popupBigPicture.alt = moniker;
       this._popupPicMoniker.textContent = moniker;
-      super.open()
+      this._popupSelector.classList.add("popup_opened");
+      document.addEventListener("keydown", (evt) => {
+        if (evt.key === "Escape") {
+          this.close();
+        }
+      });
     }
   }
 }
