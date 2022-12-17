@@ -1,75 +1,91 @@
-const blackImage  = new URL('../images/black.png', import.meta.url);
+const blackImage = new URL("../images/black.png", import.meta.url);
 
 export class Card {
-  constructor(data, handleCardClick, deleteCardApi, likeCardApi, deleteLikeApi) {
+  constructor(
+    data,
+    templateSelector,
+    userId,
+    handleCardClick,
+    handleDeleteClick,
+    handleLikeClick
+  ) {
     this._name = data.name;
-    this._link = data.link;
+    this._image = data.link;
     this._likes = data.likes;
-    this._id = data.id;
-    this._ownerId = 'f174efe7217c0ba06c05738f';
-    this._itemOwnerId = data.itemOwnerId;
-    this._deleteCardApi = deleteCardApi;
+    this._id = data._id;
+    this._userId = userId; //это мой id
+    this._ownerId = data.owner._id;
+    this._template = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._likeCardApi = likeCardApi;
-    this._deleteLikeApi = deleteLikeApi;
-    this._template = document.querySelector(".template").content;
-    this._card = this._template.querySelector(".elements__card").cloneNode(true);
-    this.deleteBtn = this._card.querySelector(".elements__delete-button");
-    this._likeBtn = this._card.querySelector(".elements__like");
-    this._likeCounter = this._card.querySelector(".elements__like-counter");
-
-    this.deleteCard = (submitForm) => {
-      submitForm.addEventListener("submit", () => this.removeCard());
-      submitForm.addEventListener("submit", () => this._deleteCardApi(this._id));
-    }
-  }
-  createCard() {
-    this._image = this._card.querySelector(".elements__image");
-    this._placeName = this._card.querySelector(".elements__name");
-    this._image.oneload = () => {
-      this._image.src = blackImage
-    }
-    this._image.onerror = () => {
-      this._image.src = blackImage
-    }
-
-    this._image.src = this._link;
-    this._image.alt = this._name;
-    this._likeCounter.textContent = this._likes;
-
-    this._placeName.textContent = this._name;
-
-    this._setEventListeners();
-
-    return this._card;
-  }
-  
-  removeCard () {
-    this._card.remove();
-    this._card = null;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
+    this._card = ".elements__card";
+    this._cardImg = ".elements__image";
+    this._likeBtnSelector = ".elements__like";
+    this._deleteBtn = ".elements__delete-button";
+    this._cardTitle = ".elements__name";
   }
 
-    setLike() {
-      if (this._likeBtn.classList.contains("elements__like_active")) {
-        this._likeBtn.classList.remove("elements__like_active");
-        this._likeCounter.textContent = (Number(this._likeCounter.textContent) - 1)
-        this._deleteLikeApi(this._id);
-      } else {
-        this._likeBtn.classList.add("elements__like_active");
-        this._likeCounter.textContent = (Number(this._likeCounter.textContent) + 1);
-        this._likeCardApi(this._id);
-      }
-    }
+  // достать разметку
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._template)
+      .content.querySelector(this._card)
+      .cloneNode(true);
+    return cardElement;
+  }
 
+  //повесить слушатели
   _setEventListeners() {
-    if (this._itemOwnerId === this._ownerId) {
-      this.deleteBtn.classList.add("elements__delete-button_type_active");
+    this._cardLike = this._element.querySelector(this._likeBtnSelector);
+    this._cardLike.addEventListener("click", () => this._handleLikeClick(this._id));
+    this._del.addEventListener("click", () => this._handleDeleteClick(this._id));
+    this._cardImage.addEventListener("click", () => this._handleCardClick(this._name, this._image));
+  }
+
+  // проверка на наличие лайкнутых карточек
+  findMyLikes() {
+    return this._likes.find(user => user._id === this._userId);
+  }
+
+  //посчитать лайки
+  setLikes(newLikes) {
+    this._likes = newLikes;
+    this._likesCount.textContent = this._likes.length;
+    this.handleLikeCard();
+  }
+
+  handleLikeCard() {
+    if (this.findMyLikes()) {
+      this._cardLike.classList.add("elements__like_active");
+    } else {
+      this._cardLike.classList.remove("elements__like_active");
     }
-    //this.deleteBtn.addEventListener("click", () => this.removeCard());
-    //this.deleteBtn.addEventListener("click", () => this._deleteCardApi(this._id));
-    this._likeBtn.addEventListener("click", () => this.setLike());
-    this._image.addEventListener("click", () => {
-      this._handleCardClick(this._name, this._link);
-    });
+  }
+
+  //удалить карту
+  removeCard() {
+    this._element.remove();
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector(this._cardImg);
+    this._del = this._element.querySelector(this._deleteBtn);
+    this._cardImage.onerror = () => {
+      this._cardImage.src = blackImage;
+    };
+    this._setEventListeners();
+    this._cardImage.src = this._image;
+    this._element.querySelector(this._cardTitle).textContent = this._name;
+    this._cardImage.alt = this._name;
+    this._likesCount = this._element.querySelector(".elements__like-counter");
+    if (this._ownerId !== this._userId) {
+      this._del.remove();
+    }
+
+    this.setLikes(this._likes);
+
+    return this._element;
   }
 }

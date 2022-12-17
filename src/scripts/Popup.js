@@ -1,35 +1,42 @@
 export class Popup {
   constructor(popupSelector) {
-    this._popupSelector = document.querySelector(popupSelector);
-    this._buttonEditOpen = document.querySelector(".profile__edit-button");
+    this.popupSelector = popupSelector;
+    this.popup = document.querySelector(this.popupSelector);
+    this._handleButtonOverlayClose = this._handleButtonOverlayClose.bind(this);
+    this._handleEscClose = this._handleEscClose.bind(this);
+  }
 
-    this.handleEscClose = (evt) => {
-      if (evt.key === "Escape") {
-        this.close();
-      }
-    }
+  open() {
+    this.popup.classList.add("popup_opened");
+    this.setEventListeners();
+  }
 
-    this.open = () => {
-      this._popupSelector.classList.add("popup_opened");
-      document.addEventListener("keydown", this.handleEscClose);
+  close() {
+    this.popup.classList.remove("popup_opened");
+    this.removeEventListeners();
+  }
+
+  _handleEscClose(evt) {
+    if (evt.key === "Escape") {
+      this.close();
     }
   }
 
-
-
-  close() {
-    this._popupSelector.classList.remove("popup_opened");
-    document.removeEventListener("keydown", this.handleEscClose);
+  _handleButtonOverlayClose(evt) {
+    if (
+      evt.target === evt.currentTarget ||
+      evt.target.classList.contains("popup__close-icon")
+    ) {
+      this.close();
+    }
   }
 
   setEventListeners() {
-    this._popupSelector.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains("popup_opened")) {
-        this.close();
-      }
-      if (evt.target.classList.contains("popup__cross-button")) {
-        this.close();
-      }
-    });
+    this.popup.addEventListener("mousedown", this._handleButtonOverlayClose);
+    document.addEventListener("keydown", this._handleEscClose);
+  }
+  removeEventListeners() {
+    this.popup.removeEventListener("mousedown", this._handleButtonOverlayClose);
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 }

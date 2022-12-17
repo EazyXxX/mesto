@@ -1,52 +1,63 @@
 import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit, handleSecondary, renderLoading) {
+  constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    this._handleSecondary = handleSecondary;
-    this._renderLoading = renderLoading;
-    this._popupSelector = document.querySelector(popupSelector);
-    this._popupForm = this._popupSelector.querySelector(".popup__form");
-    this._profileName = document.querySelector(".profile__name");
-    this._profileSubname = document.querySelector(".profile__description");
-    this._cardMoniker = this._popupSelector.querySelector(".popup__input_type_card-name");
-    this._cardLink = this._popupSelector.querySelector(".popup__input_type_link");
-    this._inputList = Array.from(this._popupSelector.querySelectorAll(".popup__input"));
-    this._saveButton = this._popupSelector.querySelector('.popup__save-button');
-    this._inputValues = {};
+    this._popupForm = this.popup.querySelector(".popup__form");
+    this._submitFormHandler = this._submitFormHandler.bind(this);
+    this._inputList = Array.from(this.popup.querySelectorAll(".popup__input"));
+    this._saveButton = this.popup.querySelector(".popup__save-button");
+    this._saveButtonText = this._saveButton.textContent;
   }
 
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._saveButton.textContent = "Сохранение...";
+    } else {
+      this._saveButton.textContent = this._saveButtonText;
+    }
+  }
+
+  //получаем значения инпутов
   _getInputValues() {
+    this._inputValues = {};
     this._inputList.forEach((input) => {
       this._inputValues[input.name] = input.value;
     });
     return this._inputValues;
   }
-  
-  setEventListeners() {
-    //обработчик клика для иконки закрытия
-    this._popupSelector.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains("popup_opened")) {
-        this.close();
-      }
-      if (evt.target.classList.contains("popup__cross-button")) {
-        this.close();
-      }
-    });
 
-    //обработчик сабмита формы
-    this._popupForm.addEventListener("submit", (evt) => { 
-      evt.preventDefault();
-      this._renderLoading(true, this._saveButton);
-      this._handleFormSubmit(this._getInputValues());
-      this._handleSecondary(this._getInputValues(), this._renderLoading, this._saveButton);
-      this.close();
-    }); 
+  //вставляем данные в значения инпутов
+  _setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
   }
 
   close() {
-    super.close()
-    this._popupForm.reset()
+    super.close();
+    this._popupForm.reset();
+  }
+
+  _submitFormHandler(evt) {
+    evt.preventDefault();
+    const data = this._getInputValues();
+    this._handleFormSubmit(data);
+  }
+
+  //обработчики клика для иконки закрытия
+  setEventListeners() {
+    super.setEventListeners();
+    this.popup.addEventListener("submit", this._submitFormHandler);
+  }
+
+  removeEventListeners() {
+    super.removeEventListeners();
+    this.popup.removeEventListener("submit", this._submitFormHandler);
+  }
+
+  changeSubmitHandler(newSubmitHandler) {
+    this._handleFormSubmit = newSubmitHandler;
   }
 }

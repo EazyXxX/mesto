@@ -1,134 +1,96 @@
 export class Api {
-  constructor() {}
-
-  getInitialCards() {
-    //получить список всех карточек в виде массива GET
-    return fetch("https://mesto.nomoreparties.co/v1/cohort-55/cards", {
-      headers: {
-        authorization: "853d6c1d-e77b-4d27-90f9-bed9b171c7fd",
-      },
-    })
-
-      .then((res) => {
-         if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .then((initialCards) => {
-        return initialCards;
-      })
-      .catch((err) => {
-        console.log(err)
-      });
+  constructor(baseUrl, headers) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
-  addCard(data, renderLoading, submitButton) {
-    //добавить карточку (POST)
-    fetch("https://mesto.nomoreparties.co/v1/cohort-55/cards", {
-      method: "POST",
-      headers: {
-        authorization: "853d6c1d-e77b-4d27-90f9-bed9b171c7fd",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.name,
-        link: data.link,
-      }),
-    })
-    .catch((err) => {console.log(`Ошибка: ${err}`)})
-    .finally(() => {renderLoading(false, submitButton)})
+  _checkResponse(res) {
+    //проверить ответ с сервера на валидность
+    if (res.ok) {
+      return res.json();
+    } 
+    else {
+      return Promise.reject(`Ошибка: ${res.status}`)
+    }
   }
 
-  deleteCard(cardId) {
-    //удалить карточку (DELETE)
-    fetch(`https://mesto.nomoreparties.co/v1/cohort-55/cards/${cardId}`, {
-      method: "DELETE",
-      headers: {
-        authorization: "853d6c1d-e77b-4d27-90f9-bed9b171c7fd",
-        "Content-Type": "application/json",
-      },
-    });
+  _request(url, options) {
+    //унифицированный запрос на сервер
+		return fetch(url, options).then(this._checkResponse)
   }
 
   getUserInfo() {
     //получить данные пользователя (GET)
-    return fetch("https://mesto.nomoreparties.co/v1/cohort-55/users/me", {
-      headers: {
-        authorization: "853d6c1d-e77b-4d27-90f9-bed9b171c7fd",
-      },
+    return this._request(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .then((myData) => {
-        return myData;
-      })
-      .catch((err) => {
-        console.log(err)
-      });
   }
 
-  patchUserInfo(data, renderLoading, submitButton) {
-    //заменить данные пользователя (PATCH)
-
-    fetch("https://mesto.nomoreparties.co/v1/cohort-55/users/me", {
-      method: "PATCH",
-      headers: {
-        authorization: "853d6c1d-e77b-4d27-90f9-bed9b171c7fd",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: `${data.name}`,
-        about: `${data.link}`,
-      }),
-    })
-    .catch((err) => {console.log(`Ошибка: ${err}`)})
-    .finally(() => {renderLoading(false, submitButton)})
-  }
-
-  likeCard(cardId) {
-    //лайкнуть карточку (PUT)
-    fetch(`https://mesto.nomoreparties.co/v1/cohort-55/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: {
-        authorization: "853d6c1d-e77b-4d27-90f9-bed9b171c7fd",
-        "Content-Type": "application/json",
-      },
-    });
-  }
-
-  deleteLike(cardId) {
-    //удалить лайк карточки (DELETE)
-    fetch(`https://mesto.nomoreparties.co/v1/cohort-55/cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: {
-        authorization: "853d6c1d-e77b-4d27-90f9-bed9b171c7fd",
-        "Content-Type": "application/json",
-      },
-    });
-  }
-
-  patchAvatar(avatar, renderLoading, submitButton) {
+  patchAvatar(avatar) {
     //заменить аватар (PATCH)
-    fetch("https://mesto.nomoreparties.co/v1/cohort-55/users/me/avatar", {
+    return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        authorization: "853d6c1d-e77b-4d27-90f9-bed9b171c7fd",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
-        avatar: `${avatar}`
-      }),
+        avatar
+      })
     })
-    .catch((err) => {console.log(`Ошибка: ${err}`)})
-    .finally(() => {renderLoading(false, submitButton)})
   }
 
-  //это минимальый список методов - нужны вспомогательные
+  patchUserInfo(name, about) {
+    //заменить данные пользователя (PATCH)
+    return this._request(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        about
+      })
+    })
+  }
 
-  //например, метод, который отдаст промис, ожидающий исполнение нескольких методов класса
+  getInitialCards() {
+    //получить список всех карточек в виде массива GET
+    return this._request(`${this._baseUrl}/cards`, {
+      method: "GET",
+      headers: this._headers,
+    })
+  }
+
+  addCard(name, link) {
+    //добавить карточку (POST)
+    return this._request(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link,
+      })
+    })
+  }
+
+  deleteLike(_id) {
+    //удалить лайк карточки (DELETE)
+    return this._request(`${this._baseUrl}/cards/${_id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+  }
+
+  likeCard(_id) {
+    //лайкнуть карточку (PUT)
+    return this._request(`${this._baseUrl}/cards/${_id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    })
+  }
+
+  deleteCard(_id) {
+    //удалить карточку (DELETE)
+    return this._request(`${this._baseUrl}/cards/${_id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+  }
 }
