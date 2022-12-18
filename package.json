@@ -1,19 +1,19 @@
 {
   "name": "mesto",
   "version": "0.0.1",
-  "description": "***",
+  "description": "\"Learning project\"",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack serve",
+    "dev": "webpack serve --mode production",
     "predeploy": "npm run build",
-    "deploy": "touch ./output_folder/.nojekyll && gh-pages -d output_folder -t true"
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EazyXxX/mesto.git"
   },
-  "author": "EaZy_XxX",
+  "author": "Eazy_XxX",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/EazyXxX/mesto/issues"
