@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EazyXxX/mesto.git"
+    "url": "https://github.com/EazyXxX/mesto.git"
   },
   "author": "Eazy_XxX",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/EazyXxX/mesto/issues"
   },
-  "homepage": "https://github.com/EazyXxX/mesto#readme",
+  "homepage": "https://github.com/EazyXxX/mesto/blob/main/README.md",
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
