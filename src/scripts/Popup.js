@@ -25,7 +25,7 @@ export class Popup {
   _handleButtonOverlayClose(evt) {
     if (
       evt.target === evt.currentTarget ||
-      evt.target.classList.contains("popup__close-icon")
+      evt.target.classList.contains("popup__cross-button")
     ) {
       this.close();
     }

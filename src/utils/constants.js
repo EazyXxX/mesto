@@ -6,6 +6,8 @@ const profileAvatar = document.querySelector(".profile__avatar");
 const elementsList = document.querySelector("#list");
 const profileAvatarButton = document.querySelector(".profile__avatar-button");
 const popupAvatarSubmitButton = document.querySelector("#submitAvatar");
+const popupEditInputName = document.querySelector(".popup__input_type_name");
+const popupEditInputSubname = document.querySelector(".popup__input_type_subname");
 const myId = "f174efe7217c0ba06c05738f";
 const baseUrl = "https://mesto.nomoreparties.co/v1/cohort-55";
 const headers = {
@@ -33,5 +35,7 @@ export {
   myId,
   baseUrl,
   headers,
-  popupSelector
+  popupSelector,
+  popupEditInputName,
+  popupEditInputSubname
 };
