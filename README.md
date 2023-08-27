@@ -1,36 +1,35 @@
 
 # Mesto
 
-#### *Это сайт, созданный, чтобы поделиться впечатлениями*
+#### *This is a site created to share experiences*
 ***
 
-[Данный сайт](https://eazyxxx.github.io/mesto/index.html) является лендинговой страничкой образовательного формата. Мы продвигаем саморазвитие. Бесплатно.
+[This site](https://eazyxxx.github.io/mesto/index.html) is an educational format landing page. We promote self-development. For free.
 
-*Mesto* позволяет всем желающим поделиться друг с другом своими снимками мест, от которых остались лучшие впечатления. 
+*Mesto* allows everyone to share with each other their pictures of places from which they left the best impressions.
 
-*Mesto* в данный момент использует:
+*Mesto* is currently using:
 
 * HTML
 
 * CSS
-	* Технологии Flexbox и Grid
-	* Адаптивную вёрстку
-    * Позиционирование элементов
-* Структурирование кода и файлов согласно БЭМ и NESTED
-* 
+	* Flexbox and Grid technologies
+	* Responsive layout
+    * Positioning elements
+* Structuring code and files according to BEM and NESTED
 * JavaScript
-    * Простые скрипты, ответственные за всплывающее окошко
+    * Simple scripts responsible for the popup window
 
-Функциональность проекта на данный момент не является предельно обширной, но в потенциале *Mesto* **научится**:
+The functionality of the project at the moment is not extremely extensive, but in the potential *Mesto* **learn**:
 
-* Сортировать контент согласно предпочтениям пользователей для увеличения количества просмотров
+* Sort content according to user preferences to increase views
 
-* Позволить пользователям самостоятельно публиковать новые материалы 
+* Allow users to self-publish new content
 
 
 
 Made by ***EaZy***
 
-[Ссылка на сайт](https://eazyxxx.github.io/mesto/index.html)
+[Actual JavaScript Mesto link](https://eazyxxx.github.io/mesto/index.html)
 
-[Яндекс.Практикум](https://practicum.yandex.ru)
+[Yandex.Prakticum](https://practicum.yandex.ru)
